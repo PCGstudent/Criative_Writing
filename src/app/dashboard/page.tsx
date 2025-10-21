@@ -114,7 +114,11 @@ export default function DashboardPage() {
                 Começar a Escrever
               </Link>
             </Button>
-            <Button variant="outline">Ver Outros Prompts</Button>
+            <Button variant="outline" asChild>
+              <Link href="/dashboard/prompts">
+                Ver Outros Prompts
+              </Link>
+            </Button>
           </div>
         </CardContent>
       </Card>

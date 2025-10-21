@@ -145,3 +145,114 @@ html {
   outline: 2px solid rgb(var(--ring));
   outline-offset: 2px;
 }
+
+/* ================================
+   TIPTAP EDITOR STYLES
+   ================================ */
+
+/* Tiptap placeholder */
+.tiptap p.is-editor-empty:first-child::before {
+  color: rgb(var(--muted-foreground));
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Tiptap prose styling */
+.tiptap.prose {
+  max-width: 100%;
+}
+
+.tiptap.prose h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  line-height: 1.2;
+}
+
+.tiptap.prose h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  line-height: 1.3;
+}
+
+.tiptap.prose h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.4;
+}
+
+.tiptap.prose p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 1.75;
+}
+
+.tiptap.prose strong {
+  font-weight: 600;
+}
+
+.tiptap.prose em {
+  font-style: italic;
+}
+
+.tiptap.prose code {
+  background: rgb(var(--muted));
+  border-radius: 0.25rem;
+  padding: 0.2em 0.4em;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.tiptap.prose ul,
+.tiptap.prose ol {
+  padding-left: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.tiptap.prose ul {
+  list-style-type: disc;
+}
+
+.tiptap.prose ol {
+  list-style-type: decimal;
+}
+
+.tiptap.prose li {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.tiptap.prose blockquote {
+  border-left: 4px solid rgb(var(--primary));
+  padding-left: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-style: italic;
+  color: rgb(var(--muted-foreground));
+}
+
+.tiptap.prose hr {
+  border: 0;
+  border-top: 1px solid rgb(var(--border));
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+/* Focus styles for editor */
+.tiptap:focus {
+  outline: none;
+}
+
+/* Dark mode adjustments */
+.dark .tiptap.prose code {
+  background: rgb(var(--muted));
+  color: rgb(var(--foreground));
+}

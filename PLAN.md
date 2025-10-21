@@ -1,7 +1,7 @@
 # Plano de Desenvolvimento - Plataforma de Escrita Criativa
 
 **Data de Criação**: 21 de Outubro de 2025
-**Última Atualização**: 21 de Outubro de 2025 - Sprint 2 Completo!
+**Última Atualização**: 21 de Outubro de 2025 - Sprint 3 Completo!
 **Projeto**: Aplicação Web de Escrita Criativa
 **Objetivo**: Criar uma plataforma elegante e intuitiva para prática, aprendizagem e evolução em escrita criativa
 
@@ -9,20 +9,20 @@
 
 ## 📊 Progresso Geral
 
-**Sprint Atual**: Sprint 2 ✅ **COMPLETO**
-**Próximo Sprint**: Sprint 3 - Editor de Escrita + Prompts
+**Sprint Atual**: Sprint 3 ✅ **COMPLETO**
+**Próximo Sprint**: Sprint 4 - Sistema de Progresso e Gamificação
 
 ### Status por Sprint
 - ✅ **Sprint 1** - Setup + Landing Page + Design System (COMPLETO)
 - ✅ **Sprint 2** - Autenticação + Dashboard (COMPLETO)
-- ⏳ **Sprint 3** - Editor de Escrita + Prompts (PRÓXIMO)
-- ⬜ **Sprint 4** - Sistema de Progresso e Gamificação
+- ✅ **Sprint 3** - Editor de Escrita + Prompts (COMPLETO)
+- ⏳ **Sprint 4** - Sistema de Progresso e Gamificação (PRÓXIMO)
 - ⬜ **Sprint 5** - Biblioteca Pessoal
 - ⬜ **Sprint 6** - Competições e Desafios
 - ⬜ **Sprint 7** - Comunidade e Partilha
 - ⬜ **Sprint 8** - Analytics, Polimento e Otimização
 
-### Progresso: 25% (2/8 sprints)
+### Progresso: 37.5% (3/8 sprints)
 
 ---
 
@@ -187,48 +187,64 @@
 
 ---
 
-### ✍️ Sprint 3: Editor de Escrita + Prompts (1-2 semanas)
+### ✍️ Sprint 3: Editor de Escrita + Prompts ✅ COMPLETO
+
+**Completado em**: 21 de Outubro de 2025
 
 #### Editor de Texto
-- [ ] Integrar Tiptap
-- [ ] Toolbar de formatação:
-  - Bold, Italic, Underline
+- [x] Integrar Tiptap
+- [x] Toolbar de formatação:
+  - Bold, Italic, Strikethrough
   - Headings (H1, H2, H3)
   - Lists (ordered, unordered)
   - Blockquote
-  - Code block
-- [ ] Features do editor:
+  - Code inline
+  - Undo/Redo
+  - Clear formatting
+- [x] Features do editor:
   - Contador de palavras (tempo real)
   - Contador de caracteres
   - Tempo de leitura estimado
-  - Timer opcional (com alerta)
-  - Modo foco (esconde distrações)
-  - Auto-save (a cada X segundos)
-- [ ] Atalhos de teclado
-- [ ] Preview mode
+  - Timer com play/pause/reset
+  - Modo foco fullscreen
+  - Auto-save (a cada 30 segundos)
+- [x] Atalhos de teclado (Ctrl+B, Ctrl+I, etc)
+- [x] Placeholder customizável
+- [x] Estilos prose para editor
 
 #### Sistema de Prompts
-- [ ] Base de dados de prompts
-- [ ] Categorias:
-  - Ficção (contos, romance, fantasia, sci-fi)
-  - Poesia (livre, soneto, haiku)
-  - Não-ficção (ensaio, artigo, memoir)
-  - Exercícios (descrição, diálogo, personagem)
-- [ ] Níveis de dificuldade:
-  - Iniciante
-  - Intermédio
-  - Avançado
-- [ ] Prompt do dia (renovado às 00:00)
-- [ ] Sistema de filtros e pesquisa
-- [ ] Visualização de prompt com detalhes
+- [x] Base de dados de prompts (19 prompts)
+- [x] Categorias:
+  - Ficção
+  - Poesia
+  - Não-ficção
+  - Exercícios
+- [x] Níveis de dificuldade:
+  - Iniciante (50 XP)
+  - Intermediário (100 XP)
+  - Avançado (200 XP)
+- [x] Prompt do dia (renovado diariamente via seed)
+- [x] Sistema de filtros por categoria e nível
+- [x] Visualização de prompt com detalhes completos
+- [x] Badges de categoria e nível
+- [x] Tags e tempo estimado
 
 #### Página "Nova Escrita"
-- [ ] Seleção de prompt ou escrita livre
-- [ ] Interface do editor
-- [ ] Opções de configuração (timer, modo foco)
-- [ ] Botões de ação (guardar, publicar, descartar)
+- [x] Seleção de prompt via query params
+- [x] Interface completa do editor
+- [x] Controles de escrita (timer, modo foco, save)
+- [x] Display do prompt selecionado
+- [x] Auto-save funcional
+- [x] Modo foco fullscreen
 
-**Entrega**: Editor funcional com prompts variados, pronto para uso
+#### Biblioteca de Prompts
+- [x] Página dedicada (/dashboard/prompts)
+- [x] Grid responsivo de prompts
+- [x] Filtros interativos
+- [x] Contagem de resultados
+- [x] Link direto para escrever
+
+**Entrega**: ✅ Editor completo com Tiptap, 19 prompts organizados, sistema de filtros e página de escrita funcional
 
 ---
 
@@ -601,5 +617,39 @@
 
 ---
 
+## 🎉 Sprint 3 - Completado em 21/10/2025
+
+**Entregues:**
+- ✅ Editor de texto rico Tiptap completo
+- ✅ Toolbar com 15+ opções de formatação
+- ✅ Contador de palavras, caracteres e tempo de leitura
+- ✅ Timer funcional com play/pause/reset
+- ✅ Modo foco fullscreen
+- ✅ Auto-save a cada 30 segundos
+- ✅ 19 prompts organizados em 4 categorias e 3 níveis
+- ✅ Sistema de filtros por categoria e nível
+- ✅ Página "Nova Escrita" completa
+- ✅ Biblioteca de Prompts com grid responsivo
+- ✅ Integração prompt do dia no dashboard
+
+**Stack Implementada:**
+- @tiptap/react 3.7.2
+- @tiptap/starter-kit 3.7.2
+- @tiptap/extension-character-count
+- @tiptap/extension-placeholder
+- @tiptap/extension-typography
+- Componente Badge UI
+- Sistema de prompts com TypeScript
+
+**Componentes Criados:**
+- Editor
+- EditorToolbar
+- EditorStats
+- WritingTimer
+- WritingControls
+- Badge
+
+---
+
 **Documento criado em**: 21 de Outubro de 2025
-**Última atualização**: 21 de Outubro de 2025 - Sprint 2 Completo!
+**Última atualização**: 21 de Outubro de 2025 - Sprint 3 Completo!
