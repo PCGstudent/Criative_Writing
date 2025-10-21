@@ -1,0 +1,605 @@
+# Plano de Desenvolvimento - Plataforma de Escrita Criativa
+
+**Data de Criação**: 21 de Outubro de 2025
+**Última Atualização**: 21 de Outubro de 2025 - Sprint 2 Completo!
+**Projeto**: Aplicação Web de Escrita Criativa
+**Objetivo**: Criar uma plataforma elegante e intuitiva para prática, aprendizagem e evolução em escrita criativa
+
+---
+
+## 📊 Progresso Geral
+
+**Sprint Atual**: Sprint 2 ✅ **COMPLETO**
+**Próximo Sprint**: Sprint 3 - Editor de Escrita + Prompts
+
+### Status por Sprint
+- ✅ **Sprint 1** - Setup + Landing Page + Design System (COMPLETO)
+- ✅ **Sprint 2** - Autenticação + Dashboard (COMPLETO)
+- ⏳ **Sprint 3** - Editor de Escrita + Prompts (PRÓXIMO)
+- ⬜ **Sprint 4** - Sistema de Progresso e Gamificação
+- ⬜ **Sprint 5** - Biblioteca Pessoal
+- ⬜ **Sprint 6** - Competições e Desafios
+- ⬜ **Sprint 7** - Comunidade e Partilha
+- ⬜ **Sprint 8** - Analytics, Polimento e Otimização
+
+### Progresso: 25% (2/8 sprints)
+
+---
+
+## 🎉 Sprint 1 - Completado em 21/10/2025
+
+**Entregues:**
+- ✅ Projeto Next.js 15 + TypeScript + Tailwind CSS v4
+- ✅ Design System completo (cores, tipografia, componentes)
+- ✅ Landing Page elegante com animações (Framer Motion)
+- ✅ Dark Mode funcional com toggle
+- ✅ Componentes base (Button, Card)
+- ✅ Servidor de desenvolvimento rodando em http://localhost:3001
+
+**Stack Implementada:**
+- Next.js 15.5.6 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+- next-themes
+- Lucide React
+
+---
+
+## Stack Tecnológica
+
+### Frontend
+- **Framework**: Next.js 14+ (App Router)
+- **Linguagem**: TypeScript
+- **Styling**: Tailwind CSS
+- **Componentes UI**: shadcn/ui (componentes elegantes, acessíveis e customizáveis)
+- **Animações**: Framer Motion
+- **Ícones**: Lucide React
+
+### Editor
+- **Editor de Texto**: Tiptap (editor de texto rico baseado em ProseMirror)
+- **Formatação**: Markdown support + Rich text
+
+### State Management & Data
+- **State**: Zustand (leve e performático)
+- **Forms**: React Hook Form + Zod (validação)
+- **Data Fetching**: TanStack Query (React Query)
+
+### Backend & Database
+- **Backend**: Next.js API Routes (Server Actions)
+- **Database**: Supabase (PostgreSQL + Real-time)
+- **ORM**: Prisma ou Drizzle
+- **Storage**: Supabase Storage (para exports e media)
+
+### Autenticação
+- **Auth Provider**: Clerk (autenticação moderna e segura)
+- **Social Login**: Google, GitHub
+
+### Deploy & Infraestrutura
+- **Hosting**: Vercel (otimizado para Next.js)
+- **Analytics**: Vercel Analytics + Posthog
+- **Monitoring**: Sentry (error tracking)
+
+---
+
+## Estrutura de Sprints
+
+### 📋 Sprint 1: Setup + Landing Page + Design System ✅ COMPLETO
+
+**Objetivo**: Ter algo visual e elegante para validação imediata
+
+#### Tarefas Técnicas
+- [x] Inicializar projeto Next.js 14 com TypeScript
+- [x] Configurar Tailwind CSS
+- [x] Instalar e configurar shadcn/ui (componentes base criados)
+- [x] Setup Framer Motion
+- [x] Configurar estrutura de pastas (app, components, lib, etc)
+
+#### Design System
+- [x] Definir paleta de cores:
+  - Primária: Indigo (inspirador)
+  - Secundária: Amber (highlights)
+  - Accent: Teal (criativo)
+  - Semânticas (success, error, warning, info)
+- [x] Tipografia:
+  - Headings: Geist Sans
+  - Body: Geist Sans
+  - Monospace: Geist Mono
+- [x] Espaçamentos e breakpoints responsivos
+- [x] Componentes base:
+  - Button (6 variants: default, secondary, accent, outline, ghost, link)
+  - Card (com Header, Title, Description, Content, Footer)
+  - Theme Toggle
+
+#### Landing Page
+- [x] Hero Section:
+  - Título impactante com gradiente animado
+  - Subtítulo explicativo
+  - CTAs principais ("Começar a Escrever" + "Saiba Mais")
+  - Animações de entrada (Framer Motion)
+  - Stats cards (10K+ escritores, 50K+ textos, etc)
+- [x] Secção de Features:
+  - 6 features com ícones e descrições
+  - Layout em grid responsivo (3 colunas)
+  - Animações ao scroll e hover effects
+- [x] Secção "Como Funciona":
+  - 3 passos com ícones e numeração
+  - Visual timeline
+- [x] CTA Section com gradiente
+- [x] Footer:
+  - 4 colunas (Produto, Comunidade, Suporte, Sobre)
+  - Links organizados
+  - Copyright
+
+#### Extra
+- [x] Dark mode com toggle (next-themes)
+- [x] Animações suaves e elegantes (Framer Motion)
+- [x] Totalmente responsivo (mobile-first)
+- [x] Background gradientes radiais
+- [x] Smooth scrolling
+
+**Entrega**: ✅ Landing page funcional e elegante, rodando em http://localhost:3001
+
+---
+
+### 🔐 Sprint 2: Autenticação + Dashboard ✅ COMPLETO
+
+**Completado em**: 21 de Outubro de 2025
+
+#### Autenticação
+- [x] Integrar Clerk
+- [x] Páginas de login/signup
+- [x] Social login (Google, GitHub)
+- [x] Proteção de rotas
+- [x] Middleware de autenticação
+
+#### Dashboard Principal
+- [x] Layout principal:
+  - Sidebar responsiva (desktop) / Bottom nav (mobile)
+  - Header com perfil e notificações
+  - Área de conteúdo principal
+- [x] Navegação:
+  - Home/Dashboard
+  - Nova Escrita
+  - Biblioteca
+  - Progresso
+  - Comunidade
+  - Perfil
+- [x] Dashboard Home:
+  - Widgets de estatísticas rápidas
+  - Prompt do dia
+  - Atividade recente
+  - Streak atual
+
+#### Perfil do Utilizador
+- [x] Página de perfil básico
+- [x] Edição de informações (preparado)
+- [x] Upload de avatar (via Clerk)
+- [x] Preferências básicas
+
+#### Onboarding
+- [x] Fluxo de boas-vindas (primeiro acesso)
+- [x] Seleção de interesses
+- [x] Tutorial rápido da plataforma
+
+**Entrega**: ✅ Sistema completo de autenticação e dashboard navegável com onboarding
+
+---
+
+### ✍️ Sprint 3: Editor de Escrita + Prompts (1-2 semanas)
+
+#### Editor de Texto
+- [ ] Integrar Tiptap
+- [ ] Toolbar de formatação:
+  - Bold, Italic, Underline
+  - Headings (H1, H2, H3)
+  - Lists (ordered, unordered)
+  - Blockquote
+  - Code block
+- [ ] Features do editor:
+  - Contador de palavras (tempo real)
+  - Contador de caracteres
+  - Tempo de leitura estimado
+  - Timer opcional (com alerta)
+  - Modo foco (esconde distrações)
+  - Auto-save (a cada X segundos)
+- [ ] Atalhos de teclado
+- [ ] Preview mode
+
+#### Sistema de Prompts
+- [ ] Base de dados de prompts
+- [ ] Categorias:
+  - Ficção (contos, romance, fantasia, sci-fi)
+  - Poesia (livre, soneto, haiku)
+  - Não-ficção (ensaio, artigo, memoir)
+  - Exercícios (descrição, diálogo, personagem)
+- [ ] Níveis de dificuldade:
+  - Iniciante
+  - Intermédio
+  - Avançado
+- [ ] Prompt do dia (renovado às 00:00)
+- [ ] Sistema de filtros e pesquisa
+- [ ] Visualização de prompt com detalhes
+
+#### Página "Nova Escrita"
+- [ ] Seleção de prompt ou escrita livre
+- [ ] Interface do editor
+- [ ] Opções de configuração (timer, modo foco)
+- [ ] Botões de ação (guardar, publicar, descartar)
+
+**Entrega**: Editor funcional com prompts variados, pronto para uso
+
+---
+
+### 📈 Sprint 4: Sistema de Progresso e Gamificação (1 semana)
+
+#### Sistema de XP e Níveis
+- [ ] Modelo de dados para XP/níveis
+- [ ] Regras de atribuição de XP:
+  - Por palavras escritas (ex: 10 XP / 100 palavras)
+  - Por conclusão de prompt (50-200 XP conforme dificuldade)
+  - Por streak (bonus diário)
+  - Por milestone (primeira escrita, 10k palavras total)
+- [ ] Cálculo de níveis (progressivo)
+- [ ] Barra de progresso visual
+
+#### Badges e Conquistas
+- [ ] Sistema de badges:
+  - Primeira Escrita
+  - 1k, 5k, 10k, 50k, 100k palavras
+  - 7, 30, 100 dias consecutivos
+  - Explorador (todas as categorias)
+  - Dedicado (X prompts completados)
+  - Comunidade (feedback em X textos)
+- [ ] Notificações de conquista (com animação)
+- [ ] Galeria de badges no perfil
+
+#### Streak System
+- [ ] Contador de dias consecutivos
+- [ ] Lógica de manutenção de streak
+- [ ] Avisos quando streak está em risco
+- [ ] Streak freeze (1-2 por mês)
+
+#### Dashboard de Progresso
+- [ ] Página dedicada ao progresso
+- [ ] Gráficos:
+  - Palavras ao longo do tempo (line chart)
+  - Distribuição por categoria (pie chart)
+  - Atividade semanal (heatmap)
+- [ ] Estatísticas resumidas
+- [ ] Lista de conquistas recentes
+
+**Entrega**: Sistema completo de gamificação motivador e visualmente apelativo
+
+---
+
+### 📚 Sprint 5: Biblioteca Pessoal (1 semana)
+
+#### Listagem de Textos
+- [ ] Página "Biblioteca"
+- [ ] Grid/List view de todos os textos
+- [ ] Card de preview:
+  - Título
+  - Excerto
+  - Categoria
+  - Data
+  - Contagem de palavras
+  - Status (rascunho/publicado)
+
+#### Organização
+- [ ] Sistema de projetos/pastas
+- [ ] Tags customizáveis
+- [ ] Favoritos (star)
+- [ ] Arquivos
+- [ ] Ordenação (data, título, palavras)
+- [ ] Pesquisa full-text
+
+#### Histórico de Versões
+- [ ] Auto-save cria versões
+- [ ] Visualização de histórico
+- [ ] Comparação entre versões
+- [ ] Restaurar versão anterior
+
+#### Exportação
+- [ ] Export para PDF (formatado)
+- [ ] Export para DOCX
+- [ ] Export para TXT/Markdown
+- [ ] Export para EPUB (avançado)
+- [ ] Configurações de exportação
+
+**Entrega**: Biblioteca completa e organizada com exports funcionais
+
+---
+
+### 🏆 Sprint 6: Competições e Desafios (1-2 semanas)
+
+#### Desafios
+- [ ] Tipos de desafios:
+  - Desafio Diário (prompt específico)
+  - Desafio Semanal (tema aberto)
+  - Desafio Mensal (grande competição)
+  - Sprint de Palavras (quem escreve mais em X min)
+- [ ] Sistema de submissão
+- [ ] Validação automática (tempo, palavras)
+- [ ] Prémios e reconhecimentos
+
+#### Leaderboards
+- [ ] Leaderboard global
+- [ ] Leaderboards por categoria
+- [ ] Leaderboard semanal/mensal
+- [ ] Filtros e períodos
+- [ ] Top 10/100 destacados
+- [ ] Posição do utilizador
+
+#### Sistema de Pontos
+- [ ] Pontuação competitiva (separada de XP)
+- [ ] Reset mensal/semanal
+- [ ] Multiplicadores e bónus
+- [ ] Histórico de pontuações
+
+#### Página de Rankings
+- [ ] Visualização de leaderboards
+- [ ] Perfis de top writers
+- [ ] Estatísticas comparativas
+
+**Entrega**: Sistema de competição ativo e motivador
+
+---
+
+### 👥 Sprint 7: Comunidade e Partilha (1-2 semanas)
+
+#### Partilha de Textos
+- [ ] Toggle público/privado em textos
+- [ ] Feed público de textos
+- [ ] Filtros no feed (categoria, popularidade)
+- [ ] Preview e leitura completa
+
+#### Sistema de Feedback
+- [ ] Comentários em textos:
+  - Comentário geral
+  - Highlight de trechos específicos
+  - Reply a comentários
+- [ ] Reações:
+  - Like/Heart
+  - Reações específicas (inspirador, criativo, profundo)
+- [ ] Sistema de moderação básico
+
+#### Perfis Públicos
+- [ ] Página de perfil público
+- [ ] Textos publicados
+- [ ] Badges e conquistas
+- [ ] Estatísticas públicas
+- [ ] Bio e redes sociais
+
+#### Networking
+- [ ] Seguir outros escritores
+- [ ] Feed personalizado
+- [ ] Notificações de atividade
+- [ ] Descoberta de novos escritores
+
+**Entrega**: Comunidade ativa com possibilidade de partilha e feedback
+
+---
+
+### 🔧 Sprint 8: Analytics, Polimento e Otimização (1 semana)
+
+#### Analytics Avançado
+- [ ] Dashboard de estatísticas:
+  - Palavras por dia/semana/mês
+  - Tempo total de escrita
+  - Média de palavras por sessão
+  - Géneros mais escritos
+  - Horário mais produtivo
+  - Evolução temporal (gráficos)
+- [ ] Insights personalizados
+- [ ] Comparação com médias da plataforma
+
+#### Performance
+- [ ] Otimização de imagens (Next.js Image)
+- [ ] Code splitting
+- [ ] Lazy loading de componentes
+- [ ] Caching estratégico
+- [ ] Lighthouse score > 90
+
+#### UX/UI
+- [ ] Testes de usabilidade
+- [ ] Ajustes de acessibilidade (WCAG)
+- [ ] Micro-interações
+- [ ] Loading states elegantes
+- [ ] Error states informativos
+- [ ] Empty states motivadores
+
+#### SEO & Meta
+- [ ] Meta tags otimizados
+- [ ] Open Graph
+- [ ] Twitter Cards
+- [ ] Sitemap
+- [ ] robots.txt
+
+#### Testes
+- [ ] Testes E2E (Playwright)
+- [ ] Testes de componentes
+- [ ] Testes de integração
+- [ ] Bug fixes finais
+
+**Entrega**: Aplicação polida, performática e pronta para produção
+
+---
+
+## Funcionalidades Principais (Resumo)
+
+### 🎯 Prática
+- Editor de texto rico e intuitivo
+- Prompts diários personalizados por nível
+- Exercícios guiados por categoria
+- Timers e sprints de escrita
+- Modo foco sem distrações
+
+### 📚 Aprendizagem
+- Prompts categorizados por dificuldade
+- Recursos e dicas de escrita criativa
+- Feedback da comunidade
+- Análise de evolução temporal
+
+### 📈 Evolução
+- Sistema de níveis e XP gamificado
+- Tracking detalhado de progresso
+- Estatísticas e analytics completos
+- Histórico de versões dos textos
+
+### 💾 Arquivo
+- Biblioteca pessoal organizada
+- Projetos e tags customizáveis
+- Versionamento automático
+- Exportação em múltiplos formatos (PDF, DOCX, TXT, EPUB)
+
+### 🏆 Competição
+- Desafios diários, semanais e mensais
+- Leaderboards globais e por categoria
+- Sistema de pontos e rankings
+- Badges e conquistas
+
+### 👥 Comunidade
+- Partilha opcional de textos
+- Sistema de comentários e highlights
+- Reações e feedback construtivo
+- Seguir e descobrir outros escritores
+- Perfis públicos customizáveis
+
+---
+
+## Métricas de Sucesso
+
+### Engagement
+- Taxa de retenção D1, D7, D30
+- Tempo médio na plataforma
+- Número de textos escritos por utilizador
+- Taxa de conclusão de prompts
+
+### Crescimento
+- Novos registos semanais
+- Utilizadores ativos (DAU/MAU)
+- Taxa de conversão (visitante → registo)
+
+### Qualidade
+- Lighthouse score > 90
+- Core Web Vitals no verde
+- Taxa de erro < 1%
+- Tempo de resposta API < 200ms
+
+### Comunidade
+- Textos partilhados vs privados
+- Comentários por texto
+- Taxa de interação
+- Network effect (follows, shares)
+
+---
+
+## Considerações Técnicas
+
+### Performance
+- Server Components para melhor performance
+- Streaming de conteúdo
+- Optimistic updates
+- Edge functions quando apropriado
+
+### Segurança
+- Rate limiting em APIs
+- Sanitização de inputs
+- CSP headers
+- Proteção contra XSS/CSRF
+
+### Escalabilidade
+- Database indexing adequado
+- Caching em múltiplos níveis
+- CDN para assets estáticos
+- Preparado para crescimento horizontal
+
+### Acessibilidade
+- Navegação por teclado
+- Screen reader friendly
+- Contraste adequado (WCAG AA)
+- ARIA labels apropriados
+
+---
+
+## Timeline Estimado
+
+| Sprint | Duração | Data Início | Data Fim |
+|--------|---------|-------------|----------|
+| Sprint 1 | 1 semana | Semana 1 | Semana 1 |
+| Sprint 2 | 1 semana | Semana 2 | Semana 2 |
+| Sprint 3 | 1-2 semanas | Semana 3 | Semana 4 |
+| Sprint 4 | 1 semana | Semana 5 | Semana 5 |
+| Sprint 5 | 1 semana | Semana 6 | Semana 6 |
+| Sprint 6 | 1-2 semanas | Semana 7 | Semana 8 |
+| Sprint 7 | 1-2 semanas | Semana 9 | Semana 10 |
+| Sprint 8 | 1 semana | Semana 11 | Semana 11 |
+
+**Total**: 11-15 semanas (~3-4 meses)
+
+---
+
+## Próximos Passos
+
+### ✅ Completados (Sprint 1 + Sprint 2)
+1. ✅ Criar este documento de planeamento
+2. ✅ Setup inicial do projeto Next.js
+3. ✅ Configurar Tailwind CSS e shadcn/ui
+4. ✅ Definir design system (cores, tipografia)
+5. ✅ Implementar landing page
+6. ✅ Adicionar dark mode
+7. ✅ Configurar Clerk para autenticação
+8. ✅ Criar páginas de login/signup
+9. ✅ Implementar layout do dashboard (sidebar + header)
+10. ✅ Criar navegação principal
+11. ✅ Desenvolver dashboard home com widgets
+12. ✅ Implementar perfil básico do utilizador
+13. ✅ Criar fluxo de onboarding
+
+### 🎯 Próximo Sprint (Sprint 3)
+1. ⏳ Integrar Tiptap como editor de texto rico
+2. ⏳ Criar toolbar de formatação
+3. ⏳ Implementar features do editor (contador, timer, auto-save)
+4. ⏳ Criar base de dados de prompts
+5. ⏳ Implementar sistema de categorias e níveis
+6. ⏳ Criar prompt do dia
+7. ⏳ Desenvolver página "Nova Escrita"
+
+---
+
+## Notas
+
+- Este plano é iterativo e pode ser ajustado com base no feedback
+- Cada sprint deve terminar com uma demo/validação
+- Prioridade em ter entregas visuais rapidamente
+- Foco em elegância, intuitividade e performance
+- Código limpo e bem documentado desde o início
+
+---
+
+## 🎉 Sprint 2 - Completado em 21/10/2025
+
+**Entregues:**
+- ✅ Clerk integrado com autenticação completa
+- ✅ Páginas de login/signup elegantes e funcionais
+- ✅ Social login configurado (Google, GitHub)
+- ✅ Middleware de proteção de rotas
+- ✅ Dashboard completo com sidebar responsiva
+- ✅ Navegação entre 6 seções principais
+- ✅ Dashboard home com widgets interativos
+- ✅ Página de perfil com estatísticas e conquistas
+- ✅ Fluxo de onboarding em 3 etapas
+- ✅ Landing page atualizada com links de autenticação
+
+**Stack Implementada:**
+- @clerk/nextjs 6.33.7
+- Middleware de autenticação Next.js
+- Componentes dashboard com Framer Motion
+- Sistema de navegação completo
+
+---
+
+**Documento criado em**: 21 de Outubro de 2025
+**Última atualização**: 21 de Outubro de 2025 - Sprint 2 Completo!
