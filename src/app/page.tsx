@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -13,7 +14,8 @@ import {
   Sparkles,
   Target,
   Award,
-  Zap
+  Zap,
+  LogIn
 } from "lucide-react"
 
 const fadeIn = {
@@ -33,8 +35,14 @@ const staggerContainer = {
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-muted/30 to-background">
-      {/* Theme Toggle - Fixed Position */}
-      <div className="fixed right-4 top-4 z-50">
+      {/* Header */}
+      <div className="fixed right-4 top-4 z-50 flex items-center gap-2">
+        <Button variant="ghost" asChild>
+          <Link href="/sign-in">
+            <LogIn className="mr-2 h-4 w-4" />
+            Entrar
+          </Link>
+        </Button>
         <ThemeToggle />
       </div>
 
@@ -90,12 +98,16 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              <Button size="xl" className="group">
-                Começar a Escrever
-                <Zap className="ml-2 h-5 w-5 transition-transform group-hover:scale-110" />
+              <Button size="xl" className="group" asChild>
+                <Link href="/sign-up">
+                  Começar a Escrever
+                  <Zap className="ml-2 h-5 w-5 transition-transform group-hover:scale-110" />
+                </Link>
               </Button>
-              <Button size="xl" variant="outline">
-                Saiba Mais
+              <Button size="xl" variant="outline" asChild>
+                <Link href="#features">
+                  Saiba Mais
+                </Link>
               </Button>
             </motion.div>
 
@@ -127,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="px-4 py-24 sm:px-6 lg:px-8">
+      <section id="features" className="px-4 py-24 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <motion.div
             className="mb-16 text-center"
@@ -288,8 +300,10 @@ export default function Home() {
               <p className="mb-8 text-xl text-white/90">
                 Junte-se a milhares de escritores e transforme sua criatividade
               </p>
-              <Button size="xl" variant="secondary" className="shadow-lg">
-                Criar Conta Gratuita
+              <Button size="xl" variant="secondary" className="shadow-lg" asChild>
+                <Link href="/sign-up">
+                  Criar Conta Gratuita
+                </Link>
               </Button>
             </div>
           </motion.div>
