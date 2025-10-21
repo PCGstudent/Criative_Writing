@@ -13,23 +13,25 @@ export function EditorStats({ editor }: EditorStatsProps) {
   }
 
   const { characters, words } = editor.storage.characterCount
+  const charCount = typeof characters === 'function' ? characters() : 0
+  const wordCount = typeof words === 'number' ? words : 0
 
   // Calculate reading time (average 200 words per minute)
-  const readingTime = Math.ceil(words / 200)
+  const readingTime = Math.ceil(wordCount / 200)
 
   return (
     <div className="flex items-center gap-6 rounded-b-lg border border-t-0 border-border bg-muted/30 px-4 py-2 text-sm text-muted-foreground">
       <div className="flex items-center gap-2">
         <FileText className="h-4 w-4" />
         <span>
-          <strong className="text-foreground">{words}</strong> palavras
+          <strong className="text-foreground">{wordCount}</strong> palavras
         </span>
       </div>
 
       <div className="flex items-center gap-2">
         <Type className="h-4 w-4" />
         <span>
-          <strong className="text-foreground">{characters()}</strong> caracteres
+          <strong className="text-foreground">{charCount}</strong> caracteres
         </span>
       </div>
 
