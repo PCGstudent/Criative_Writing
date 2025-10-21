@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Escrita Criativa - Plataforma Web
 
-## Getting Started
+Uma plataforma moderna e elegante dedicada à escrita criativa, onde escritores podem praticar, aprender, evoluir, acompanhar seu progresso e competir com outros.
 
-First, run the development server:
+## 🚀 Status do Projeto
+
+**Sprint Atual**: Sprint 1 ✅ **COMPLETO**
+
+- ✅ Landing page elegante com animações
+- ✅ Design system completo
+- ✅ Dark mode funcional
+- ✅ Totalmente responsivo
+
+## 🛠️ Stack Tecnológica
+
+### Core
+- **Next.js** 15.5.6 (App Router)
+- **React** 19
+- **TypeScript**
+- **Tailwind CSS** v4
+
+### UI/UX
+- **Framer Motion** - Animações suaves
+- **next-themes** - Dark mode
+- **Lucide React** - Ícones
+- **class-variance-authority** - Variantes de componentes
+- **tailwind-merge** - Merge de classes Tailwind
+
+### Design System
+- Paleta de cores elegante (Indigo, Amber, Teal)
+- Componentes customizáveis (Button, Card, etc)
+- Suporte completo a dark mode
+- Animações suaves e profissionais
+
+## 🏃 Como Executar
 
 ```bash
+# Instalar dependências
+npm install
+
+# Executar em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build para produção
+npm run build
+
+# Executar produção
+npm start
+
+# Linting
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em **http://localhost:3000** (ou 3001 se 3000 estiver ocupado)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estrutura do Projeto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+├── src/
+│   ├── app/              # App Router (Next.js 13+)
+│   │   ├── layout.tsx    # Layout raiz com ThemeProvider
+│   │   ├── page.tsx      # Landing page
+│   │   └── globals.css   # Estilos globais + Design system
+│   ├── components/       # Componentes React
+│   │   ├── ui/          # Componentes base do design system
+│   │   │   ├── button.tsx
+│   │   │   └── card.tsx
+│   │   ├── theme-provider.tsx
+│   │   └── theme-toggle.tsx
+│   └── lib/             # Utilitários
+│       └── utils.ts     # Helpers (cn, etc)
+├── public/              # Assets estáticos
+└── package.json
+```
 
-## Learn More
+## 🎨 Design System
 
-To learn more about Next.js, take a look at the following resources:
+### Cores Principais
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Light Mode
+- **Primary**: Indigo (#6366F1) - Inspirador
+- **Secondary**: Amber (#FBBF24) - Highlights
+- **Accent**: Teal (#14B8A6) - Criativo
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+#### Dark Mode
+- **Primary**: Indigo claro (#818CF8)
+- **Secondary**: Amber claro (#FCD34D)
+- **Accent**: Teal claro (#2DD4BF)
 
-## Deploy on Vercel
+### Componentes Disponíveis
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Button
+```tsx
+<Button variant="default">Default</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="link">Link</Button>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+// Tamanhos
+<Button size="sm">Small</Button>
+<Button size="default">Default</Button>
+<Button size="lg">Large</Button>
+<Button size="xl">Extra Large</Button>
+```
+
+#### Card
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Título</CardTitle>
+    <CardDescription>Descrição</CardDescription>
+  </CardHeader>
+  <CardContent>
+    Conteúdo aqui
+  </CardContent>
+  <CardFooter>
+    Footer aqui
+  </CardFooter>
+</Card>
+```
+
+## 🎯 Funcionalidades Implementadas (Sprint 1)
+
+- ✅ Landing page completa e responsiva
+- ✅ Hero section com animações
+- ✅ Seção de features (6 cards)
+- ✅ Seção "Como Funciona" (3 passos)
+- ✅ CTA section com gradiente
+- ✅ Footer organizado
+- ✅ Dark mode com toggle
+- ✅ Animações suaves (Framer Motion)
+- ✅ Design system completo
+- ✅ Componentes base (Button, Card)
+
+## 📋 Próximos Passos (Sprint 2)
+
+- ⏳ Integração com Clerk (autenticação)
+- ⏳ Dashboard principal
+- ⏳ Navegação (sidebar + header)
+- ⏳ Perfil do utilizador
+- ⏳ Onboarding flow
+
+## 📖 Documentação
+
+Para mais detalhes sobre o planeamento completo do projeto, consulte:
+- **PLAN_2025_10_21.md** (na raiz do projeto)
+
+## 🤝 Contribuindo
+
+Este é um projeto em desenvolvimento ativo. Atualmente em **Sprint 1** de 8 sprints planejados.
+
+---
+
+**Desenvolvido com ❤️ para escritores**

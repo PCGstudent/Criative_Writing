@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
+/* ================================
+   DESIGN SYSTEM - Escrita Criativa
+   ================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Colors - Light Mode */
+  --background: 255 255 255; /* #ffffff */
+  --foreground: 15 23 42; /* slate-900 */
+
+  /* Primary - Elegant purple/indigo for inspiration */
+  --primary: 99 102 241; /* indigo-500 */
+  --primary-foreground: 255 255 255;
+
+  /* Secondary - Warm amber for highlights */
+  --secondary: 251 191 36; /* amber-400 */
+  --secondary-foreground: 15 23 42;
+
+  /* Accent - Creative teal */
+  --accent: 20 184 166; /* teal-500 */
+  --accent-foreground: 255 255 255;
+
+  /* Muted - Subtle backgrounds */
+  --muted: 248 250 252; /* slate-50 */
+  --muted-foreground: 100 116 139; /* slate-500 */
+
+  /* Card */
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+
+  /* Borders */
+  --border: 226 232 240; /* slate-200 */
+  --input: 226 232 240;
+  --ring: 99 102 241; /* same as primary */
+
+  /* Semantic Colors */
+  --success: 34 197 94; /* green-500 */
+  --warning: 234 179 8; /* yellow-500 */
+  --error: 239 68 68; /* red-500 */
+  --info: 59 130 246; /* blue-500 */
+
+  /* Radius */
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  /* Colors - Dark Mode */
+  --background: 2 6 23; /* Very dark blue-black */
+  --foreground: 241 245 249; /* slate-100 */
+
+  --primary: 129 140 248; /* indigo-400 - lighter for dark mode */
+  --primary-foreground: 15 23 42;
+
+  --secondary: 252 211 77; /* amber-300 */
+  --secondary-foreground: 15 23 42;
+
+  --accent: 45 212 191; /* teal-400 */
+  --accent-foreground: 15 23 42;
+
+  --muted: 15 23 42; /* slate-900 */
+  --muted-foreground: 148 163 184; /* slate-400 */
+
+  --card: 15 23 42;
+  --card-foreground: 241 245 249;
+
+  --border: 30 41 59; /* slate-800 */
+  --input: 30 41 59;
+  --ring: 129 140 248;
+
+  --success: 74 222 128; /* green-400 */
+  --warning: 250 204 21; /* yellow-400 */
+  --error: 248 113 113; /* red-400 */
+  --info: 96 165 250; /* blue-400 */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 2 6 23;
+    --foreground: 241 245 249;
   }
 }
 
+/* Tailwind Theme Configuration */
+@theme inline {
+  /* Colors */
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-success: rgb(var(--success));
+  --color-warning: rgb(var(--warning));
+  --color-error: rgb(var(--error));
+  --color-info: rgb(var(--info));
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Border Radius */
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 0.25rem);
+  --radius-xl: calc(var(--radius) + 0.5rem);
+}
+
+/* Base Styles */
+* {
+  border-color: rgb(var(--border));
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-family: var(--font-sans);
+  font-feature-settings: "rlig" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: rgba(var(--primary), 0.2);
+  color: rgb(var(--foreground));
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid rgb(var(--ring));
+  outline-offset: 2px;
 }
