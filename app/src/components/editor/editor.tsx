@@ -18,6 +18,7 @@ interface EditorProps {
   showStats?: boolean
   focusMode?: boolean
   onWordCountChange?: (count: number) => void
+  onCharacterCountChange?: (count: number) => void
 }
 
 export function Editor({
@@ -28,6 +29,7 @@ export function Editor({
   showStats = true,
   focusMode = false,
   onWordCountChange,
+  onCharacterCountChange,
 }: EditorProps) {
   const editor = useEditor({
     immediatelyRender: false, // Fix SSR hydration mismatch
@@ -64,6 +66,10 @@ export function Editor({
       const text = editor.getText()
       const words = text.trim().split(/\s+/).filter(word => word.length > 0).length
       onWordCountChange?.(words)
+
+      // Get character count from extension
+      const characters = editor.storage.characterCount.characters()
+      onCharacterCountChange?.(characters)
     },
   })
 
@@ -73,14 +79,20 @@ export function Editor({
     }
   }, [content, editor])
 
-  // Calculate initial word count when editor is ready or content changes
+  // Calculate initial word count and character count when editor is ready or content changes
   useEffect(() => {
-    if (editor && onWordCountChange) {
-      const text = editor.getText()
-      const words = text.trim().split(/\s+/).filter(word => word.length > 0).length
-      onWordCountChange(words)
+    if (editor) {
+      if (onWordCountChange) {
+        const text = editor.getText()
+        const words = text.trim().split(/\s+/).filter(word => word.length > 0).length
+        onWordCountChange(words)
+      }
+      if (onCharacterCountChange) {
+        const characters = editor.storage.characterCount.characters()
+        onCharacterCountChange(characters)
+      }
     }
-  }, [editor, onWordCountChange, content])
+  }, [editor, onWordCountChange, onCharacterCountChange, content])
 
   if (!editor) {
     return null

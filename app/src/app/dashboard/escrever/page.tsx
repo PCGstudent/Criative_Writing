@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { getDailyPrompt, getPromptById, type Prompt } from "@/lib/data/prompts"
 import { useProgress } from "@/lib/hooks/useProgress"
+import { useLibrary } from "@/lib/hooks/useLibrary"
 import { Sparkles, ArrowLeft, Trophy } from "lucide-react"
 import Link from "next/link"
 
@@ -19,15 +20,21 @@ export default function EscreverPage() {
   // All state declarations first
   const [content, setContent] = useState("")
   const [wordCount, setWordCount] = useState(0) // Track word count from editor
+  const [characterCount, setCharacterCount] = useState(0) // Track character count from editor
   const [focusMode, setFocusMode] = useState(false)
   const [selectedPrompt, setSelectedPrompt] = useState<Prompt | null>(null)
   const [isSaving, setIsSaving] = useState(false)
   const [isCompleting, setIsCompleting] = useState(false)
   const [initialWordCount, setInitialWordCount] = useState(0)
+  const [currentTextId, setCurrentTextId] = useState<string | null>(null) // ID do texto sendo editado
+  const [textTitle, setTextTitle] = useState("") // Título do texto
   const hasUpdatedStreak = useRef(false)
 
   // Progress hook
   const { updateStreak, addWords, completePrompt, completeText, progress } = useProgress()
+
+  // Library hook
+  const { createText, updateText } = useLibrary()
 
 
   useEffect(() => {
@@ -49,11 +56,40 @@ export default function EscreverPage() {
 
   const handleSave = useCallback(async () => {
     setIsSaving(true)
-    // TODO: Implement actual save to database
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    console.log("Saving content:", content)
+
+    try {
+      // Auto-determinar título se não houver
+      const title = textTitle || (selectedPrompt ? selectedPrompt.title : `Texto ${new Date().toLocaleDateString()}`)
+
+      if (!currentTextId) {
+        // Criar novo texto
+        const textId = createText({
+          title,
+          content,
+          category: selectedPrompt?.category as any,
+          promptId: selectedPrompt?.id,
+          wordCount,
+          characterCount,
+        })
+        setCurrentTextId(textId)
+        console.log('✅ Novo texto criado:', textId)
+      } else {
+        // Atualizar texto existente
+        updateText(currentTextId, {
+          title,
+          content,
+          wordCount,
+          characterCount,
+          createVersion: false, // Não criar versão no auto-save
+        })
+        console.log('✅ Texto atualizado:', currentTextId)
+      }
+    } catch (error) {
+      console.error('❌ Erro ao salvar:', error)
+    }
+
     setIsSaving(false)
-  }, [content])
+  }, [content, wordCount, characterCount, textTitle, currentTextId, selectedPrompt, createText, updateText])
 
   // Completar texto e ganhar XP
   const handleCompleteWriting = useCallback(async () => {
@@ -67,6 +103,42 @@ export default function EscreverPage() {
     // Usar o wordCount do editor (já calculado corretamente)
     const wordsWritten = Math.max(0, wordCount - initialWordCount)
     console.log('✍️ Palavras escritas:', wordsWritten)
+
+    // Auto-determinar título se não houver
+    const title = textTitle || (selectedPrompt ? selectedPrompt.title : `Texto ${new Date().toLocaleDateString()}`)
+
+    // Salvar na biblioteca como texto completado
+    if (!currentTextId) {
+      // Criar novo texto completo
+      const textId = createText({
+        title,
+        content,
+        category: selectedPrompt?.category as any,
+        promptId: selectedPrompt?.id,
+        wordCount,
+        characterCount,
+      })
+      // Marcar como completado
+      updateText(textId, {
+        status: 'completed',
+        createVersion: true,
+        versionNote: 'Versão final completada',
+      })
+      setCurrentTextId(textId)
+      console.log('✅ Texto criado e completado:', textId)
+    } else {
+      // Atualizar texto existente e marcar como completado
+      updateText(currentTextId, {
+        title,
+        content,
+        wordCount,
+        characterCount,
+        status: 'completed',
+        createVersion: true,
+        versionNote: 'Versão final completada',
+      })
+      console.log('✅ Texto completado:', currentTextId)
+    }
 
     // Dar XP pelas palavras (já pode ter dado incrementalmente, mas garantir o total)
     if (wordsWritten > 0) {
@@ -85,17 +157,14 @@ export default function EscreverPage() {
       completePrompt(difficulty)
     }
 
-    // Simular salvamento
-    await handleSave()
-
     setIsCompleting(false)
 
-    console.log('✅ Redirecionando para progresso...')
+    console.log('✅ Redirecionando para biblioteca...')
     // Mostrar mensagem de sucesso e redirecionar
     setTimeout(() => {
-      router.push('/dashboard/progresso')
+      router.push('/dashboard/biblioteca')
     }, 1000)
-  }, [wordCount, initialWordCount, selectedPrompt, addWords, completeText, completePrompt, handleSave, router])
+  }, [wordCount, characterCount, initialWordCount, selectedPrompt, textTitle, content, currentTextId, addWords, completeText, completePrompt, createText, updateText, router])
 
   // Auto-save every 30 seconds
   useEffect(() => {
@@ -213,6 +282,7 @@ export default function EscreverPage() {
           content={content}
           onChange={setContent}
           onWordCountChange={setWordCount}
+          onCharacterCountChange={setCharacterCount}
           placeholder={
             selectedPrompt
               ? `Comece a escrever sobre: ${selectedPrompt.title}...`
