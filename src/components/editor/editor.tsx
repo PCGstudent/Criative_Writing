@@ -30,6 +30,7 @@ export function Editor({
   onWordCountChange,
 }: EditorProps) {
   const editor = useEditor({
+    immediatelyRender: false, // Fix SSR hydration mismatch
     extensions: [
       StarterKit.configure({
         heading: {
@@ -71,6 +72,16 @@ export function Editor({
       editor.commands.setContent(content)
     }
   }, [content, editor])
+
+  // Calculate initial word count when editor is ready or content changes
+  useEffect(() => {
+    if (editor && onWordCountChange) {
+      const text = editor.getText()
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0).length
+      console.log('🔢 Editor: Calculando word count:', words, 'texto:', text.substring(0, 50))
+      onWordCountChange(words)
+    }
+  }, [editor, onWordCountChange, content])
 
   if (!editor) {
     return null

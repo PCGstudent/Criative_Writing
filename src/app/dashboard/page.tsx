@@ -14,12 +14,21 @@ import {
   Sparkles
 } from "lucide-react"
 import Link from "next/link"
+import { useProgress } from "@/lib/hooks/useProgress"
+import { AchievementNotificationsContainer } from "@/components/progress"
 
 export default function DashboardPage() {
   const { user } = useUser()
+  const { progress, newBadges, clearNewBadges } = useProgress()
 
   return (
     <div className="space-y-8 pb-20 lg:pb-8">
+      {/* Achievement Notifications */}
+      <AchievementNotificationsContainer
+        badgeIds={newBadges}
+        onClear={clearNewBadges}
+      />
+
       {/* Welcome Section */}
       <div>
         <h1 className="text-3xl font-bold bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
@@ -30,7 +39,7 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      {/* Quick Stats */}
+      {/* Quick Stats - Com dados reais */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -38,8 +47,12 @@ export default function DashboardPage() {
             <Flame className="h-4 w-4 text-orange-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">7 dias</div>
-            <p className="text-xs text-muted-foreground">Continue escrevendo!</p>
+            <div className="text-2xl font-bold">
+              {progress.streak.currentStreak} {progress.streak.currentStreak === 1 ? 'dia' : 'dias'}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {progress.streak.isAtRisk ? 'Em risco! Escreva hoje' : 'Continue escrevendo!'}
+            </p>
           </CardContent>
         </Card>
 
@@ -49,8 +62,12 @@ export default function DashboardPage() {
             <BookOpen className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12,453</div>
-            <p className="text-xs text-muted-foreground">+2,341 esta semana</p>
+            <div className="text-2xl font-bold">
+              {progress.stats.totalWords.toLocaleString()}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              +{progress.stats.wordsThisWeek.toLocaleString()} esta semana
+            </p>
           </CardContent>
         </Card>
 
@@ -60,8 +77,10 @@ export default function DashboardPage() {
             <Award className="h-4 w-4 text-accent" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">Nível 8</div>
-            <p className="text-xs text-muted-foreground">450 XP para nível 9</p>
+            <div className="text-2xl font-bold">Nível {progress.level.level}</div>
+            <p className="text-xs text-muted-foreground">
+              {progress.level.currentXP}/{progress.level.xpForNextLevel} XP para nível {progress.level.level + 1}
+            </p>
           </CardContent>
         </Card>
 
@@ -71,8 +90,10 @@ export default function DashboardPage() {
             <PenTool className="h-4 w-4 text-secondary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">23</div>
-            <p className="text-xs text-muted-foreground">3 este mês</p>
+            <div className="text-2xl font-bold">{progress.stats.totalTexts}</div>
+            <p className="text-xs text-muted-foreground">
+              {progress.stats.totalPrompts} prompts completados
+            </p>
           </CardContent>
         </Card>
       </div>

@@ -3,6 +3,7 @@
 import { useUser } from "@clerk/nextjs"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { ProgressBar } from "@/components/progress"
 import {
   User,
   Mail,
@@ -13,9 +14,14 @@ import {
   Flame,
   Settings
 } from "lucide-react"
+import Link from "next/link"
+import { useProgress } from "@/lib/hooks/useProgress"
+import { getBadgeById } from "@/lib/data/badges"
+import * as Icons from "lucide-react"
 
 export default function ProfilePage() {
   const { user } = useUser()
+  const { progress } = useProgress()
 
   return (
     <div className="space-y-8 pb-20 lg:pb-8">
@@ -75,7 +81,7 @@ export default function ProfilePage() {
 
         {/* Stats and Achievements */}
         <div className="md:col-span-2 space-y-6">
-          {/* Stats Grid */}
+          {/* Stats Grid - Com dados reais */}
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Card>
               <CardHeader className="pb-2">
@@ -85,11 +91,19 @@ export default function ProfilePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">8</div>
-                <div className="mt-2 h-2 rounded-full bg-secondary/20">
-                  <div className="h-2 rounded-full bg-primary w-[65%]" />
+                <div className="text-2xl font-bold">{progress.level.level}</div>
+                <div className="mt-2">
+                  <ProgressBar
+                    current={progress.level.currentXP}
+                    max={progress.level.xpForNextLevel}
+                    size="sm"
+                    variant="default"
+                    animated={false}
+                  />
                 </div>
-                <p className="text-xs text-muted-foreground mt-1">450 XP para nível 9</p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {progress.level.currentXP}/{progress.level.xpForNextLevel} XP para nível {progress.level.level + 1}
+                </p>
               </CardContent>
             </Card>
 
@@ -101,8 +115,12 @@ export default function ProfilePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">7 dias</div>
-                <p className="text-xs text-muted-foreground mt-1">Melhor: 23 dias</p>
+                <div className="text-2xl font-bold">
+                  {progress.streak.currentStreak} {progress.streak.currentStreak === 1 ? 'dia' : 'dias'}
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Melhor: {progress.streak.longestStreak} dias
+                </p>
               </CardContent>
             </Card>
 
@@ -114,7 +132,9 @@ export default function ProfilePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">12,453</div>
+                <div className="text-2xl font-bold">
+                  {progress.stats.totalWords.toLocaleString()}
+                </div>
                 <p className="text-xs text-muted-foreground mt-1">Total escritas</p>
               </CardContent>
             </Card>
@@ -123,88 +143,71 @@ export default function ProfilePage() {
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium flex items-center gap-2">
                   <TrendingUp className="h-4 w-4 text-secondary" />
-                  Ranking
+                  Conquistas
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">#127</div>
-                <p className="text-xs text-muted-foreground mt-1">Global</p>
+                <div className="text-2xl font-bold">{progress.badges.length}</div>
+                <p className="text-xs text-muted-foreground mt-1">Badges desbloqueados</p>
               </CardContent>
             </Card>
           </div>
 
-          {/* Achievements */}
+          {/* Achievements - Com dados reais */}
           <Card>
             <CardHeader>
               <CardTitle>Conquistas</CardTitle>
               <CardDescription>Badges e marcos desbloqueados</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="flex items-start gap-4 p-4 rounded-lg border bg-card">
-                  <div className="rounded-lg bg-primary/10 p-3">
-                    <Award className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium">Primeira Escrita</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Completou seu primeiro texto na plataforma
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Desbloqueado há 2 meses
-                    </p>
-                  </div>
-                </div>
+              {progress.badges.length > 0 ? (
+                <>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {progress.badges.slice(0, 4).map((userBadge) => {
+                      const badge = getBadgeById(userBadge.badgeId)
+                      if (!badge) return null
 
-                <div className="flex items-start gap-4 p-4 rounded-lg border bg-card">
-                  <div className="rounded-lg bg-orange-500/10 p-3">
-                    <Flame className="h-6 w-6 text-orange-500" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium">Semana Dedicada</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Manteve um streak de 7 dias consecutivos
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Desbloqueado ontem
-                    </p>
-                  </div>
-                </div>
+                      const Icon = Icons[badge.icon as keyof typeof Icons] as Icons.LucideIcon
 
-                <div className="flex items-start gap-4 p-4 rounded-lg border bg-card">
-                  <div className="rounded-lg bg-accent/10 p-3">
-                    <BookOpen className="h-6 w-6 text-accent" />
+                      return (
+                        <div key={badge.id} className="flex items-start gap-4 p-4 rounded-lg border bg-card">
+                          <div className="rounded-lg bg-primary/10 p-3">
+                            {Icon && <Icon className="h-6 w-6 text-primary" />}
+                          </div>
+                          <div className="flex-1">
+                            <h4 className="font-medium">{badge.name}</h4>
+                            <p className="text-xs text-muted-foreground mt-1">
+                              {badge.description}
+                            </p>
+                            <p className="text-xs text-muted-foreground mt-2">
+                              Desbloqueado{' '}
+                              {formatRelativeDate(userBadge.unlockedAt)}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium">10K Palavras</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Escreveu mais de 10.000 palavras no total
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Desbloqueado há 1 semana
-                    </p>
-                  </div>
-                </div>
 
-                <div className="flex items-start gap-4 p-4 rounded-lg border bg-muted/50 opacity-50">
-                  <div className="rounded-lg bg-muted p-3">
-                    <TrendingUp className="h-6 w-6 text-muted-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-medium">Nível 10</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Alcance o nível 10
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-2">
-                      Bloqueado • 1,250 XP necessários
-                    </p>
-                  </div>
+                  <Button variant="outline" className="w-full mt-4" asChild>
+                    <Link href="/dashboard/progresso">
+                      Ver Todas as Conquistas ({progress.badges.length})
+                    </Link>
+                  </Button>
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <p className="text-sm text-muted-foreground">
+                    Você ainda não desbloqueou nenhum badge.
+                  </p>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Comece a escrever para ganhar suas primeiras conquistas!
+                  </p>
+                  <Button className="mt-4" asChild>
+                    <Link href="/dashboard/escrever">Começar a Escrever</Link>
+                  </Button>
                 </div>
-              </div>
-
-              <Button variant="outline" className="w-full mt-4">
-                Ver Todas as Conquistas (15/42)
-              </Button>
+              )}
             </CardContent>
           </Card>
 
@@ -244,4 +247,18 @@ export default function ProfilePage() {
       </div>
     </div>
   )
+}
+
+// Helper function para formatar data relativa
+function formatRelativeDate(date: Date): string {
+  const now = new Date()
+  const diff = now.getTime() - date.getTime()
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+
+  if (days === 0) return 'hoje'
+  if (days === 1) return 'ontem'
+  if (days < 7) return `há ${days} dias`
+  if (days < 30) return `há ${Math.floor(days / 7)} semanas`
+  if (days < 365) return `há ${Math.floor(days / 30)} meses`
+  return `há ${Math.floor(days / 365)} anos`
 }

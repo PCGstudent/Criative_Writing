@@ -1,6 +1,6 @@
 "use client"
 
-import { UserButton } from "@clerk/nextjs"
+import dynamic from "next/dynamic"
 import {
   Home,
   PenTool,
@@ -18,6 +18,11 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
+
+const ClerkUserButton = dynamic(
+  () => import("@/components/clerk-user-button").then(mod => mod.ClerkUserButton),
+  { ssr: false }
+)
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: Home },
@@ -124,7 +129,7 @@ export default function DashboardLayout({
               <Bell className="h-5 w-5" />
               <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-destructive" />
             </Button>
-            <UserButton afterSignOutUrl="/" />
+            <ClerkUserButton />
           </div>
         </header>
 
